@@ -15,6 +15,9 @@ router.get('/autor/:autorId', async (req, res) => {
     const { autorId } = req.params;
     try {
         const [posts] = await getByAutorId(autorId);
+        if (posts.length === 0) {
+            return res.json('Error, no hay noticias de ese autor');
+        }
         res.json(posts);
     } catch (error) {
         res.status(503).json({ Error: error.message })
@@ -25,6 +28,7 @@ router.get('/:postId', async (req, res) => {
     const { postId } = req.params;
     try {
         const [result] = await getById(postId);
+
         if (result.length === 0) {
             return res.json('Error: la noticia no existe');
         }
