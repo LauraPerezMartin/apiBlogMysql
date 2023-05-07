@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAll, getById, create, update, deleteById } = require('../../models/post.model');
+const { getAll, getById, create, update, deleteById, getByAutorId } = require('../../models/post.model');
 
 router.get('/', async (req, res) => {
     try {
@@ -10,9 +10,21 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:postId', async (req, res) => {
+//recuperamos todos los posts de un autor
+router.get('/autor/:autorId', async (req, res) => {
+    const { autorId } = req.params;
     try {
-        const [result] = await getById(req.params.postId);
+        const [posts] = await getByAutorId(autorId);
+        res.json(posts);
+    } catch (error) {
+        res.status(503).json({ Error: error.message })
+    }
+});
+
+router.get('/:postId', async (req, res) => {
+    const { postId } = req.params;
+    try {
+        const [result] = await getById(postId);
         if (result.length === 0) {
             return res.json('Error: la noticia no existe');
         }

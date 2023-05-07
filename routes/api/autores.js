@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { getAll, getById, create, update, deleteById } = require('../../models/autor.model');
+const { getByAutorId } = require('../../models/post.model');
 
 router.get('/', async (req, res) => {
     try {
@@ -10,9 +11,24 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:autorId', async (req, res) => {
+//recuperamos un autor con todos sus posts
+router.get('/posts/:autorId', async (req, res) => {
+    const { autorId } = req.params;
     try {
-        const [result] = await getById(req.params.autorId);
+        const [result] = await getById(autorId);
+        const [posts] = await getByAutorId(autorId);
+        const [autor] = result;
+        autor.posts = posts;
+        res.json(autor);
+    } catch (error) {
+        res.status(503).json({ Error: error.message });
+    }
+})
+
+router.get('/:autorId', async (req, res) => {
+    const { autorId } = req.params;
+    try {
+        const [result] = await getById(autorId);
         if (result.length === 0) {
             return res.json('Error: ese usuario no existe');
         }
@@ -44,8 +60,8 @@ router.put('/:autorId', async (req, res) => {
 })
 
 router.delete('/:autorId', async (req, res) => {
+    const { autorId } = req.params;
     try {
-        const { autorId } = req.params;
         const [autor] = await getById(autorId);
         if (autor.length === 0) {
             return res.json('Error: ese usuario no existe');
