@@ -19,8 +19,8 @@ const create = ({ titulo, descripcion, categoria, autor_id }) => {
 
 };
 
-const update = (postId, { titulo, descripcion, fecha_creacion, categoria, autor_id }) => {
-    return db.query('UPDATE posts SET titulo=?, descripcion=?, fecha_creacion=?, categoria=?, autor_id=? WHERE id=?', [titulo, descripcion, fecha_creacion, categoria, autor_id, postId]);
+const update = (postId, { titulo, descripcion, categoria, autor_id }) => {
+    return db.query('UPDATE posts SET titulo=?, descripcion=?, categoria=?, autor_id=? WHERE id=?', [titulo, descripcion, categoria, autor_id, postId]);
 };
 
 const deleteById = (postId) => {
