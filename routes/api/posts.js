@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-//recuperamos todos los posts de un autor
+//recuperamos todos los posts de un autor.
 router.get('/autor/:autorId', async (req, res) => {
     const { autorId } = req.params;
     try {

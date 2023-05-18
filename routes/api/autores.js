@@ -56,6 +56,9 @@ router.put('/:autorId', async (req, res) => {
     try {
         await update(autorId, req.body);
         const [autor] = await getById(autorId);
+        if (autor.length === 0) {
+            return res.json('Error: el autor no exite');
+        }
         res.json(autor[0]);
     } catch (error) {
         res.status(503).json({ Error: error.message });

@@ -1,4 +1,4 @@
-//listamos todos los posts con los datos del autor
+//listamos todos los posts con los datos del autor.
 const getAll = () => {
     return db.query('SELECT p.* , a.nombre, a.email, a.imagen FROM blog.posts AS p, blog.autores AS a WHERE p.autor_Id = a.id');
 };
