@@ -54,9 +54,6 @@ router.put('/:postId', async (req, res) => {
     try {
         await update(postId, req.body);
         const [post] = await getById(postId);
-        if (!post[0]) {
-            return res.json('Error: la noticia no existe')
-        }
         res.json(post[0]);
     } catch (error) {
         res.status(503).json({ Error: error.message });
