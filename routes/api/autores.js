@@ -19,8 +19,11 @@ router.get('/posts/:autorId', async (req, res) => {
         if (result.length === 0) {
             return res.json('Error, el autor no existe');
         }
-        const [posts] = await getPostByAutorId(autorId);
         const [autor] = result;
+        const [posts] = await getPostByAutorId(autorId);
+        if (posts.length === 0) {
+            posts[0] = 'Este autor no tiene noticias';
+        }
         autor.posts = posts;
         res.json(autor);
     } catch (error) {
