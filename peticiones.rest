@@ -1,0 +1,66 @@
+@host=http://localhost:3000
+
+GET {{host}}/api/posts
+
+### POSTS
+GET {{host}}/api/posts/6
+
+### todos los post de un autor
+GET {{host}}/api/posts/autor/3
+
+### 
+POST {{host}}/api/posts
+Content-Type: application/json
+
+{
+    "titulo": "Noticia de Geografía", 
+    "descripcion":"Pellentesque maximus volutpat leo vitae viverra. Vestibulum at sagittis nunc. Suspendisse imperdiet dui augue, sed bibendum erat rhoncus vitae. Fusce a commodo est. Nulla scelerisque placerat sem quis egestas.\n\nPellentesque vitae dignissim lectus. Suspendisse ac pulvinar neque, eget rhoncus eros. Mauris sed sapien eget leo accumsan convallis nec id dui. Pellentesque dapibus a neque in iaculis. Nam vehicula tellus sed purus auctor egestas. Ut id tortor non velit finibus faucibus non et ante. Suspendisse fermentum, risus ac volutpat porttitor, orci mi dictum leo, ac facilisis nisi leo et mi.\nDonec mattis turpis non mollis porta. Duis et condimentum neque. Nam cursus erat ut pharetra facilisis. Proin fermentum risus a quam laoreet, et scelerisque nulla iaculis. Proin nec urna fermentum, gravida dolor nec, feugiat sapien. Nulla mauris nulla, suscipit vitae scelerisque sed, tincidunt id elit. Suspendisse sagittis urna lacinia dolor maximus, id iaculis nisi auctor. Morbi eget tortor massa.", 
+    "categoria": "Geografía", 
+    "autor_id": 18
+}
+
+###
+PUT {{host}}/api/posts/3
+Content-Type: application/json
+
+{
+    "titulo": "Noticia de historia",
+    "descripcion": "La historia de Vestibulum at sagittis nunc. Suspendisse imperdiet dui augue, sed bibendum erat rhoncus vitae. Fusce a commodo est. Nulla scelerisque placerat sem quis egestas.\n\nPellentesque vitae dignissim lectus. Suspendisse ac pulvinar neque, eget rhoncus eros. Mauris sed sapien eget leo accumsan convallis nec id dui. Pellentesque dapibus a neque in iaculis. Nam vehicula tellus sed purus auctor egestas. Ut id tortor non velit finibus faucibus non et ante. Suspendisse fermentum, risus ac volutpat porttitor, orci mi dictum leo, ac facilisis nisi leo et mi.\nDonec mattis turpis non mollis porta. Duis et condimentum neque. Nam cursus erat ut pharetra facilisis. Proin fermentum risus a quam laoreet, et scelerisque nulla iaculis. Proin nec urna fermentum, gravida dolor nec, feugiat sapien. Nulla mauris nulla, suscipit vitae scelerisque sed, tincidunt id elit. Suspendisse sagittis urna lacinia dolor maximus, id iaculis nisi auctor. Morbi eget tortor massa.",
+    "categoria": "Historia",
+    "autor_id": 1
+  }
+
+###
+DELETE {{host}}/api/posts/15
+
+### AUTORES
+GET {{host}}/api/autores
+
+###
+GET {{host}}/api/autores/1
+
+### autor con todos sus post
+GET {{host}}/api/autores/posts/11
+
+###
+POST {{host}}/api/autores
+Content-Type: application/json
+
+{
+    "nombre": "Filomena León",
+    "email": "filomena@gmail.com",
+    "imagen": "filomena.jpg"
+}
+
+###
+PUT {{host}}/api/autores/18
+Content-Type: application/json
+
+{
+    "nombre": "Filomena Panete",
+    "email": "filomena@gmail.com",
+    "imagen": "filomena.jpg"
+}
+
+###
+DELETE {{host}}/api/autores/18
